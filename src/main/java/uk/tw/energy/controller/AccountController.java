@@ -27,6 +27,7 @@ public class AccountController {
         return ResponseEntity.badRequest().body("Unable to register smart meter !!");
     }
 
+    // Fetch smart meter details
     @GetMapping("/smart-meter/{smartMeterId}")
     public ResponseEntity<Map<String, String>> getSmartMeterDetails(@PathVariable String smartMeterId) {
         Map<String, String> smartMeterDetails = accountService.getSmartMeterDetails(smartMeterId);
