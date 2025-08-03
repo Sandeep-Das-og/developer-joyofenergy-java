@@ -1,10 +1,7 @@
 package uk.tw.energy.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import uk.tw.energy.domain.PricePlan;
 import uk.tw.energy.domain.SmartMeter;
@@ -23,7 +20,8 @@ public class AccountService {
     }
 
     public boolean registerNewSmartMeter(SmartMeter smartMeter) {
-        if(!plans.contains(smartMeter.pricePlan()) || smartMeterToPricePlanAccounts.containsKey(smartMeter.smartMeterId())) {
+        if (!plans.contains(smartMeter.pricePlan())
+                || smartMeterToPricePlanAccounts.containsKey(smartMeter.smartMeterId())) {
             System.out.println("Price plan doesn't exist or smart meter already registered");
             return false;
         }
@@ -37,12 +35,9 @@ public class AccountService {
     }
 
     public Map<String, String> getSmartMeterDetails(String smartMeterId) {
-        if(!smartMeterToPricePlanAccounts.containsKey(smartMeterId)) {
+        if (!smartMeterToPricePlanAccounts.containsKey(smartMeterId)) {
             return null;
         }
-        return Map.of(
-                "Smart meter id", smartMeterId,
-                "Price plan", smartMeterToPricePlanAccounts.get(smartMeterId)
-        );
+        return Map.of("Smart meter id", smartMeterId, "Price plan", smartMeterToPricePlanAccounts.get(smartMeterId));
     }
 }
