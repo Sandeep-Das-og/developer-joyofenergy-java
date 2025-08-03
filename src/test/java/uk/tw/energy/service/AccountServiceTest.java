@@ -2,10 +2,13 @@ package uk.tw.energy.service;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.tw.energy.domain.PricePlan;
 
 public class AccountServiceTest {
 
@@ -16,10 +19,12 @@ public class AccountServiceTest {
 
     @BeforeEach
     public void setUp() {
+        PricePlan pricePlan1 = new PricePlan(PRICE_PLAN_ID, null, BigDecimal.TEN, null);
+        List<PricePlan> pricePlans = List.of(pricePlan1);
         Map<String, String> smartMeterToPricePlanAccounts = new HashMap<>();
         smartMeterToPricePlanAccounts.put(SMART_METER_ID, PRICE_PLAN_ID);
 
-        accountService = new AccountService(smartMeterToPricePlanAccounts);
+        accountService = new AccountService(smartMeterToPricePlanAccounts, pricePlans);
     }
 
     @Test
