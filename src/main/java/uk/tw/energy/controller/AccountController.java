@@ -16,6 +16,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+    // Register a new smart meter
     @PostMapping("/register")
     public ResponseEntity<String> registerAccount(@Validated @RequestBody SmartMeter smartMeter) {
         // logic for registering new account
